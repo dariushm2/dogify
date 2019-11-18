@@ -27,15 +27,9 @@ const BreedsList = props => {
     //.then(console.log(breedsList));
   }
 
-  console.log("Hi");
-
   useEffect(() => {
     getBreedsList();
   }, []);
-
-  const navigationOptions = {
-    title: "Dogify"
-  };
 
   const navToBreedImageGallery = name => {
     console.log("name is: " + name);

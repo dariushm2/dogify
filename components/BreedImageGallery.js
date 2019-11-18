@@ -1,25 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, FlatList, Image, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  View,
+  FlatList,
+  Image,
+  TouchableOpacity
+} from "react-native";
 
 const BreedImageGallery = props => {
-  const navigationOptions = ({ navigation }) => {
-    title: props.name;
-  };
-
   const name = props.navigation.state.params.name;
-  console.log("Hey");
-
-  const myData = [
-    { key: "one" },
-    { key: "two" },
-    { key: "three" },
-    { key: "four" },
-    { key: "five" },
-    { key: "six" },
-    { key: "seven" },
-    { key: "eight" },
-    { key: "nine" }
-  ];
 
   const [imageUrls, setImageUrls] = useState([]);
 
@@ -39,13 +28,21 @@ const BreedImageGallery = props => {
         });
       })
       .then(setImageUrls)
-      .then(() => console.log(imageUrls))
+      .then(() => console.log("size: " + imageUrls))
       .catch(e => console.log(e.message));
   }
 
   useEffect(() => {
     getImageUrls();
   }, []);
+
+  const navigateToImagePager = currentImage => {
+    const { navigate } = props.navigation;
+    navigate("ImagePager", {
+      currentImage: currentImage,
+      allImages: imageUrls
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -55,9 +52,12 @@ const BreedImageGallery = props => {
         data={imageUrls}
         keyExtractor={item => item.id.toString()}
         renderItem={itemData => (
-          <View style={styles.box}>
+          <TouchableOpacity
+            style={styles.box}
+            onPress={() => navigateToImagePager(itemData.item)}
+          >
             <Image style={styles.image} source={{ uri: itemData.item.url }} />
-          </View>
+          </TouchableOpacity>
         )}
       />
     </View>

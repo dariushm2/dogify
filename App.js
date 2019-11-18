@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import BreedsList from "./components/BreedsList";
 import BreedImageGallery from "./components/BreedImageGallery";
-import Header from "./components/Header";
+import ImagePager from "./components/ImagePager";
 
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
@@ -16,6 +16,9 @@ const MainNavigator = createStackNavigator({
   },
   BreedImageGallery: {
     screen: BreedImageGallery
+  },
+  ImagePager: {
+    screen: ImagePager
   }
 });
 

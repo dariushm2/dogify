@@ -10,6 +10,7 @@ This project is developed by <b>React Native</b> in Javascript, showing my under
 
 - React Native
 - React Native Navigation
+- Stateless Components
 - Flatlist 
 - Modal
 - Expo
